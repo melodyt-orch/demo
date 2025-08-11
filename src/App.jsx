@@ -11,7 +11,7 @@ import {
     patchOptions,
     categoryOptions,
 } from './options.jsx';
-import CommentSection from './CommentSection.jsx';
+import CommentSection from './commentsection.jsx';
 
 
 function LabeledSelect({ label, name, options, defaultValue }) {
