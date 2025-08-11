@@ -1,5 +1,10 @@
 // JavaScript source code
 
+export const projectOptions = [
+    { value: 'SelectProject', label: 'SelectProject' },
+    { value: 'Orchestra', label: 'Orchestra' },
+];
+
 export const priorityOptions = [
     { value: 'highest', label: 'Highest' },
     { value: 'high', label: 'High' },

@@ -1,337 +1,4 @@
-// import React, { useState } from 'react';
-// import './App.css';
-// import {
-//     priorityOptions,
-//     AssignToOptions,
-//     componentOptions,
-//     milestoneOptions,
-//     severityOptions,
-//     statusOptions,
-//     versionOptions,
-//     patchOptions,
-//     categoryOptions,
-// } from './options.jsx';
-
-
-// function LabeledSelect({ label, name, options, defaultValue }) {
-//     const selectedValue = defaultValue || options?.[0]?.value || '';
-//     return (
-//         <label>
-//             <div>{label}:</div>
-//             <select name={name} defaultValue={selectedValue}>
-//                 {options.map((opt) => (
-//                     <option key={opt.value} value={opt.value}>
-//                         {opt.label}
-//                     </option>
-//                 ))}
-//             </select>
-//         </label>
-//     );
-// }
-// export default function App() {
-//     const [formSubmitted, setFormSubmitted] = useState(false);
-
-//     const [formData, setFormData] = useState(null);
-
-//     const [selectedProject, setSelectedProject] = useState('selectProject');
-//     const [activeScreen, setActiveScreen] = useState(null); // Track which screen is active
-
-//     const handleProjectChange = (e) => {
-//         setSelectedProject(e.target.value);
-//     };
-
-//     const handleMenuClick = (screen) => {
-//         setActiveScreen(screen);
-//     };
-
-//     const [description, setDescription] = useState('');
-
-//     return (
-//         <div>
-
-//             {/*<nav className="mainnav">*/}
-//             {/*    <ul className="head">*/}
-//             {/*        <ul className="navbar-links">*/}
-//             {/*            <li><a href="#home">Orchestra</a></li>*/}
-//             {/*            <li><a href="#features">User</a></li>*/}
-//             {/*            <li><a href="#pricing">Help</a></li>*/}
-                       
-//             {/*        </ul>*/}
-//             {/*    </ul>*/}
-//             {/*</nav>*/}
-
-//             <nav className="navbar">
-//                 <ul className="menu">
-//                     <li className="menu-item" onClick={() => handleMenuClick('resource')} title="Add Resource" />
-//                     <li className="menu-item" onClick={() => handleMenuClick('ticketReport')} title="Add Ticket Report" />
-//                     <li className="menu-item" onClick={() => handleMenuClick('newTicket')} title="Add New Ticket" />
-//                 </ul>
-//             </nav>
-
-//             <main className="main-content">
-          
-//                 {activeScreen === 'newTicket' && (
-//                     <div>
-//                     <div className="form-container">
-//                         <form onSubmit={(e) => {
-//                             e.preventDefault();
-
-//                             const data = {
-//                                 project: selectedProject,
-//                                 shortSummary: e.target.shortsummary.value,
-//                                 fullDescription: description,
-//                                 priority: e.target.Priority?.value,
-//                                 assignTo: e.target['Assign To']?.value,
-//                                 dueOn: e.target?.due?.value,
-//                                 releasenotes: e.target.releasenotes?.value,
-//                                 hours: e.target.hours?.value,
-//                                 status: e.target.Status?.value,
-//                                 milestone: e.target.Milestone?.value,
-//                                 severity: e.target.Severity?.value,
-//                                 component: e.target.Component?.value,
-//                                 version: e.target.Version?.value,
-//                                 needPatch: e.target.NeedPatch?.value,
-//                                 category: e.target.Category?.value,
-//                                 // add more fields if needed
-//                             };
-
-//                             setFormData(data);
-
-//                         }}>
-//                             {/* your full form content here, unchanged */}
-//                             <div className="tickethead">
-//                                 <label>
-//                                     <span>New Ticket in:</span>
-//                                     <select name="Projects" value={selectedProject} onChange={handleProjectChange}>
-//                                         <option value="selectProject">SelectProject</option>
-//                                         <option value="Orchestrade">Orchestrade</option>
-//                                     </select>
-//                                 </label>
-//                             </div>
-
-//                             <div className="body">
-//                                 <div className="columns first">
-
-
-//                                     {/* Extra Fields for Orchestrade */}
-
-//                                     {selectedProject === 'Orchestrade' && (
-
-//                                         <label>
-//                                             <div>Association to current ticket : </div>
-//                                             <select name="Associations">
-//                                                 <option value="none">none</option>
-//                                                 <option value="Parent">Parent</option>
-//                                             </select>
-//                                         </label>
-
-//                                         //</div>
-//                                         //</div>
-//                                     )}
-
-
-//                                     <div>
-//                                         <label>
-//                                             <div>Short Summary : </div>
-//                                             <input type="text" name="shortsummary" />
-//                                         </label>
-//                                         <br />
-//                                         <label>
-//                                             <div  >
-                                                
-//                                                 <div>Full Description:</div>
-//                                                 <div className="description-container">
-//                                                     <textarea
-//                                                         name="fulldescription"
-//                                                         value={description}
-//                                                         onChange={(e) => setDescription(e.target.value)}
-                                                        
-//                                                     />
-                                            
-
-//                                                     <div className="preview-panel">
-
-//                                                         <div className="preview-box">
-//                                                             {description || 'Preview'}
-//                                                         </div>
-//                                                     </div>
-//                                                 </div>
-//                                             </div>
-
-//                                         </label>
-
-//                                     </div>
-
-
-//                                     {selectedProject === 'Orchestrade' && (
-//                                         <div className="rows">
-//                                             <div className="row">
-//                                                 <LabeledSelect label="Priority" name="Priority" options={priorityOptions} defaultValue={priorityOptions[2]?.value} />
-//                                             </div>
-
-//                                             <div className="row">
-//                                                 <LabeledSelect label="AssignTo" name="AssignTo" options={AssignToOptions} />
-//                                             </div>
-
-//                                             <div className="row">
-//                                                 <label>
-//                                                     <div>Due On</div>
-//                                                     <input
-//                                                         type="date"
-//                                                     />
-//                                                 </label>
-//                                             </div>
-//                                         </div>
-
-//                                     )}
-
-
-//                                     <div >
-//                                         <label>
-//                                             <div> Attachments:</div>
-//                                             <input
-//                                                 type="file"
-//                                                 name="attachment"
-//                                                 onChange={(e) => console.log(e.target.files[0])} // Handle the file
-//                                             />
-//                                         </label>
-//                                     </div>
-
-
-
-//                                 </div>
-//                                 <div className="columns second">
-//                                     {selectedProject === 'Orchestrade' && (
-
-//                                         <div>
-//                                             <LabeledSelect label="Status" name="Status" options={statusOptions} />
-
-//                                             <LabeledSelect label="Milestone" name="Milestone" options={milestoneOptions} />
-
-//                                             <LabeledSelect label="Severity" name="Severity" options={severityOptions} />
-
-//                                             <LabeledSelect label="Component" name="Component" options={componentOptions} />
-
-//                                             <LabeledSelect label="Version" name="Version" options={versionOptions} />
-
-//                                             <LabeledSelect label="NeedPatch" name="NeedPatch" options={patchOptions} />
-
-//                                             <label>
-//                                                 <div>Release Notes:</div>
-//                                                 <input type="text" name="releasenotes" />
-//                                             </label>
-
-//                                             <LabeledSelect label="Category" name="Categoryh" options={categoryOptions} />
-
-//                                             <label>
-//                                                 <div>Hours</div>
-//                                                 <input type="text" name="hours" />
-//                                             </label>
-//                                         </div>
-
-//                                     )}
-//                                 </div>
-//                             </div>
-//                             <div className="buttons">
-//                                 <button type="submit" className="submit-btn">Create Ticket</button>
-//                                 <button type="button" className="cancel-btn">Cancel</button>
-//                             </div>
-//                         </form>
-//                         </div>
-
-
-//                         {/*{*/}
-//                         {/*    formData && (*/}
-//                         {/*        <div className="submitted-table">*/}
-//                         {/*            <h3>Submitted Ticket Info</h3>*/}
-//                         {/*            <table>*/}
-//                         {/*                <tbody>*/}
-//                         {/*                    {Object.entries(formData).map(([key, value]) => (*/}
-//                         {/*                        <tr key={key}>*/}
-//                         {/*                            <td><strong>{key}</strong></td>*/}
-//                         {/*                            <td>{value}</td>*/}
-//                         {/*                        </tr>*/}
-//                         {/*                    ))}*/}
-//                         {/*                </tbody>*/}
-//                         {/*            </table>*/}
-//                         {/*        </div>*/}
-//                         {/*    )*/}
-//                         {/*}*/}
-
-
-//                         {formData && (
-//                             <div className="submitted-table">
-//                                 {/* Short Summary as Heading */}
-//                                 <h2>{formData.shortSummary}</h2>
-
-//                                 {/* First row: Priority, Severity, Due Date */}
-//                                 <table>
-//                                     {/*<thead>*/}
-//                                     {/*    <tr>*/}
-//                                     {/*        <th>Priority</th>*/}
-//                                     {/*        <th>Severity</th>*/}
-//                                     {/*        <th>Due Date</th>*/}
-//                                     {/*    </tr>*/}
-//                                     {/*</thead>*/}
-//                                     <tbody>
-//                                         <tr>
-//                                             <td>{formData.priority}</td>
-//                                             <td>{formData.severity}</td>
-//                                             <td>{formData.dueOn || 'N/A'}</td>
-//                                         </tr>
-//                                     </tbody>
-//                                 </table>
-
-//                                 <table style={{ marginTop: '1rem' }}>
-//                                     <tbody>
-//                                         <tr>
-//                                             <td><strong>Milestone</strong></td>
-//                                             <td>{formData.milestone}</td>
-//                                         </tr>
-//                                         <tr>
-//                                             <td><strong>Component</strong></td>
-//                                             <td>{formData.component}</td>
-//                                         </tr>
-//                                         <tr>
-//                                             <td><strong>Version</strong></td>
-//                                             <td>{formData.version}</td>
-//                                         </tr>
-//                                         <tr>
-//                                             <td><strong>Need Patch</strong></td>
-//                                             <td>{formData.needPatch}</td>
-//                                         </tr>
-//                                         <tr>
-//                                             <td><strong>Release Notes</strong></td>
-//                                             <td>{formData.releasenotes}</td>
-//                                         </tr>
-//                                         <tr>
-//                                             <td><strong>Category</strong></td>
-//                                             <td>{formData.category}</td>
-//                                         </tr>
-//                                     </tbody>
-//                                 </table>
-
-
-//                                 {/* Full Description */}
-//                                 <div style={{ marginTop: '1.5rem' }}>
-//                                     <h4>Full Description</h4>
-//                                     <div style={{ whiteSpace: 'pre-wrap', backgroundColor: '#f4f4f4', padding: '1rem', border: '1px solid #ccc' }}>
-//                                         {formData.fullDescription}
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         )}
-
-
-//                     </div>
-//                 )}
-//             </main>
-//         </div>
-//     );
-// }
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import {
     priorityOptions,
@@ -344,12 +11,14 @@ import {
     patchOptions,
     categoryOptions,
 } from './options.jsx';
+import CommentSection from './CommentSection.jsx';
+
 
 function LabeledSelect({ label, name, options, defaultValue }) {
     const selectedValue = defaultValue || options?.[0]?.value || '';
     return (
         <label>
-            <div>{label}:</div>
+            <div>{label}</div>
             <select name={name} defaultValue={selectedValue}>
                 {options.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -359,6 +28,81 @@ function LabeledSelect({ label, name, options, defaultValue }) {
             </select>
         </label>
     );
+}
+
+const EditableSelect = ({ fieldName, options, value, editingField, onChange, setEditingField }) => {
+    return editingField === fieldName ? (
+        <select
+            value={value}
+            onChange={(e) => onChange(fieldName, e.target.value)}
+            autoFocus
+        >
+            {options.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                </option>
+            ))}
+        </select>
+    ) : (
+        <span onClick={() => setEditingField(fieldName)}>
+            {options.find((opt) => opt.value === value)?.label || "N/A"}
+        </span>
+    );
+};
+
+function EditableText({ value, onSave, placeholder }) {
+    const [editing, setEditing] = useState(false);
+    const [draft, setDraft] = useState(value);
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (editing && inputRef.current) {
+            inputRef.current.focus();
+            inputRef.current.select();
+        }
+    }, [editing]);
+
+    useEffect(() => {
+        setDraft(value);  // Update draft if parent value changes externally
+    }, [value]);
+
+    const handleSave = () => {
+        if (draft !== value) {
+            onSave(draft);
+        }
+        setEditing(false);
+    };
+
+    const handleCancel = () => {
+        setDraft(value);
+        setEditing(false);
+    };
+
+    const onKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSave();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            handleCancel();
+        }
+    };
+
+    if (editing) {
+        return (
+            <input
+                ref={inputRef}
+                type="text"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={handleSave}
+                onKeyDown={onKeyDown}
+                placeholder={placeholder}
+            />
+        );
+    }
+
+    return <span onClick={() => setEditing(true)} >{value || placeholder}</span>;
 }
 
 export default function App() {
@@ -382,18 +126,20 @@ export default function App() {
         setDescription('');
         setFormData(null);
         setActiveScreen(null);
+        setFormSubmitted(false);
+        setEditingField(null);
     };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const data = {
             project: selectedProject,
-            shortSummary: e.target.shortsummary.value,
+            shortSummary: e.target.shortsummary.value || "null",
             fullDescription: description,
             priority: e.target.Priority?.value,
             assignTo: e.target.AssignTo?.value,
             dueOn: e.target.dueOn?.value,
-            releasenotes: e.target.releasenotes?.value,
+            releasenotes: e.target.releasenotes?.value || "null",
             hours: e.target.hours?.value,
             status: e.target.Status?.value,
             milestone: e.target.Milestone?.value,
@@ -407,6 +153,8 @@ export default function App() {
         setFormData(data);
         setFormSubmitted(true);
         setActiveScreen(null);
+        setEditingField(null);
+     
     };
 
     const handleEditChange = (field, value) => {
@@ -414,15 +162,33 @@ export default function App() {
         setEditingField(null);
     };
 
+    const [ticketId, setTicketId] = useState(null);
+
+    useEffect(() => {
+        // Generate a random 5-digit ID only once
+        const randomId = Math.floor(10000 + Math.random() * 90000);
+        setTicketId(randomId);
+    }, []);
+
+
+
     return (
         <div>
+
             <nav className="navbar">
                 <ul className="menu">
-                    <li className="menu-item" onClick={() => handleMenuClick('resource')} title="Add Resource" />
-                    <li className="menu-item" onClick={() => handleMenuClick('ticketReport')} title="Add Ticket Report" />
-                    <li className="menu-item" onClick={() => handleMenuClick('newTicket')} title="Add New Ticket" />
+                    <li className="menu-item" onClick={() => handleMenuClick('resource')}>
+                        <button type="button">Add Resource</button>
+                    </li>
+                    <li className="menu-item" onClick={() => handleMenuClick('ticketReport')}>
+                        <button type="button">Add Ticket Report</button>
+                    </li>
+                    <li className="menu-item" onClick={() => handleMenuClick('newTicket')}>
+                        <button type="button">Add New Ticket</button>
+                    </li>
                 </ul>
             </nav>
+
 
             <main className="main-content">
                 {activeScreen === 'newTicket' && (
@@ -430,9 +196,9 @@ export default function App() {
                         <form onSubmit={handleFormSubmit}>
                             <div className="tickethead">
                                 <label>
-                                    <span>New Ticket in:</span>
+                                    <span>New Ticket in</span>
                                     <select name="Projects" value={selectedProject} onChange={handleProjectChange}>
-                                        <option value="selectProject">SelectProject</option>
+                                        <option value="selectProject">Select Project</option>
                                         <option value="Orchestrade">Orchestrade</option>
                                     </select>
                                 </label>
@@ -442,7 +208,7 @@ export default function App() {
                                 <div className="columns first">
                                     {selectedProject === 'Orchestrade' && (
                                         <label>
-                                            <div>Association to current ticket : </div>
+                                            <div>Association to current ticket</div>
                                             <select name="Associations">
                                                 <option value="none">none</option>
                                                 <option value="Parent">Parent</option>
@@ -451,7 +217,7 @@ export default function App() {
                                     )}
 
                                     <label>
-                                        <div>Short Summary : </div>
+                                        <div>Short Summary </div>
                                         <input type="text" name="shortsummary" />
                                     </label>
                                     <br />
@@ -459,7 +225,7 @@ export default function App() {
                                         <div>Full Description:</div>
                                         <div className="description-container">
                                             <textarea
-                                                name="fulldescription"
+                                                name="fullDescription"
                                                 value={description}
                                                 onChange={(e) => setDescription(e.target.value)}
                                             />
@@ -489,7 +255,7 @@ export default function App() {
                                     )}
 
                                     <label>
-                                        <div> Attachments:</div>
+                                        <div> Attachments</div>
                                         <input
                                             type="file"
                                             name="attachment"
@@ -528,58 +294,55 @@ export default function App() {
                 )}
 
                 {formSubmitted && formData && (
-                    <div className="submitted-table">
-                        <h2>
-                            {editingField === "shortSummary" ? (
-                                <input
-                                    type="text"
-                                    value={formData.shortSummary}
-                                    onChange={(e) => handleEditChange("shortSummary", e.target.value)}
-                                    autoFocus
-                                />
-                            ) : (
-                                <span onClick={() => setEditingField("shortSummary")}>{formData.shortSummary}</span>
-                            )}
-                        </h2>
+                    <div className="submitted-comment-container">
+                        {/* Left side: submitted form data */}
+                        <div className="submitted-table" >
 
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        {editingField === "priority" ? (
-                                            <select
-                                                value={formData.priority}
-                                                onChange={(e) => handleEditChange("priority", e.target.value)}
-                                                autoFocus
-                                            >
-                                                {priorityOptions.map((opt) => (
-                                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                                ))}
-                                            </select>
-                                        ) : (
-                                            <span onClick={() => setEditingField("priority")}>
-                                                {priorityOptions.find(opt => opt.value === formData.priority)?.label}
-                                            </span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingField === "severity" ? (
-                                            <select
-                                                value={formData.severity}
-                                                onChange={(e) => handleEditChange("severity", e.target.value)}
-                                                autoFocus
-                                            >
-                                                {severityOptions.map((opt) => (
-                                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                                ))}
-                                            </select>
-                                        ) : (
-                                            <span onClick={() => setEditingField("severity")}>
-                                                {severityOptions.find(opt => opt.value === formData.severity)?.label}
-                                            </span>
-                                        )}
-                                    </td>
-                                    <td>
+                        <div className= "form-row" id="headrow">
+                            <h2>
+                                    <span className="ticketid"> #{ticketId} </span> {" "} 
+                                <EditableText
+                                    value={formData.shortSummary}
+                                    onSave={(val) => handleEditChange("shortSummary", val)}
+                              
+                                />
+                            </h2>
+
+                            <div className="field" >
+                                <EditableSelect
+                                    fieldName="status"
+                                    options={statusOptions}
+                                    value={formData.status}
+                                    editingField={editingField}
+                                    onChange={handleEditChange}
+                                    setEditingField={setEditingField}
+                                />
+                                </div>
+                            </div>
+
+                            <div className="form-row" id="toprow" >
+                                <div className="field-group" >
+                                    <div className="field">
+                                        <EditableSelect
+                                            fieldName="priority"
+                                            options={priorityOptions}
+                                            value={formData.priority}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                    <div className="field">
+                                        <EditableSelect
+                                            fieldName="severity"
+                                            options={severityOptions}
+                                            value={formData.severity}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                    <div className="field">
                                         {editingField === "dueOn" ? (
                                             <input
                                                 type="date"
@@ -588,56 +351,159 @@ export default function App() {
                                                 autoFocus
                                             />
                                         ) : (
-                                            <span onClick={() => setEditingField("dueOn")}>{formData.dueOn || 'N/A'}</span>
-                                        )}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <table className="attachment-table">
-                            <tbody>
-                                <tr>
-                                    <td><strong>Attachment</strong></td>
-                                    <td>
-                                        {editingField === "attachment" ? (
-                                            <input
-                                                type="file"
-                                                onChange={(e) => handleEditChange("attachment", e.target.files[0])}
-                                                autoFocus
-                                            />
-                                        ) : (
-                                            <span onClick={() => setEditingField("attachment")}>
-                                                {formData.attachment ? formData.attachment.name : "No file"}
+                                            <span onClick={() => setEditingField("dueOn")}>
+                                                {formData.dueOn || "No Due Date"}
                                             </span>
                                         )}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div className="full-description-container">
-                            <h4>Full Description</h4>
-                            {editingField === "fullDescription" ? (
-                                <textarea
-                                    value={formData.fullDescription}
-                                    onChange={(e) => handleEditChange("fullDescription", e.target.value)}
-                                    autoFocus
-                                    className="full-description-textarea"
-                                />
-                            ) : (
-                                <div
-                                    className="full-description-display"
-                                    onClick={() => setEditingField("fullDescription")}
-                                >
-                                    {formData.fullDescription}
+                                    </div>
                                 </div>
-                            )}
+
+                                <div className="assign-to">
+                                    <EditableSelect
+                                        fieldName="assignTo"
+                                        options={AssignToOptions}
+                                        value={formData.assignTo}
+                                        editingField={editingField}
+                                        onChange={handleEditChange}
+                                        setEditingField={setEditingField}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-section">
+                                <div className="form-row">
+                                    <div className="row-title">Milestone</div>
+                                    <div className="row-value">
+                                        <EditableSelect
+                                            fieldName="milestone"
+                                            options={milestoneOptions}
+                                            value={formData.milestone}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="row-title">Component</div>
+                                    <div className="row-value">
+                                        <EditableSelect
+                                            fieldName="component"
+                                            options={componentOptions}
+                                            value={formData.component}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="row-title">Version</div>
+                                    <div className="row-value">
+                                        <EditableSelect
+                                            fieldName="version"
+                                            options={versionOptions}
+                                            value={formData.version}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="row-title">Need Patch</div>
+                                    <div className="row-value">
+                                        <EditableSelect
+                                            fieldName="needPatch"
+                                            options={patchOptions}
+                                            value={formData.needPatch}
+                                            editingField={editingField}
+                                            onChange={handleEditChange}
+                                            setEditingField={setEditingField}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-row">
+                                    <div className="row-title">Release Notes</div>
+                                    <div className="row-value">
+
+                                        <EditableText
+                                            value={formData.releasenotes}
+                                            onSave={(val) => handleEditChange("releasenotes", val)}
+                                           
+                                        />
+                                    </div>
+                                </div>
+                           
+
+                            <div className="form-row">
+                                <div className="row-title">Category</div>
+                                <div className="row-value">
+                                    <EditableSelect
+                                        fieldName="category"
+                                        options={categoryOptions}
+                                        value={formData.category}
+                                        editingField={editingField}
+                                        onChange={handleEditChange}
+                                        setEditingField={setEditingField}
+                                    />
+                                </div>
+                                </div>
+                            </div>
+
+                            <div className="full-description-container" >
+                              
+                                <EditableText
+                                    value={formData.fullDescription}
+                                    placeholder = "Edit Description"
+                                    onSave={(val) => handleEditChange("fullDescription", val)}
+                                    
+                                    
+                                />
+                            </div>
+
+                            <div className="form-row attachment-row">
+                                <div className="row-value">
+                                    {editingField === "attachment" ? (
+                                        <input
+                                            type="file"
+                                            onChange={(e) => handleEditChange("attachment", e.target.files[0])}
+                                            autoFocus
+                                        />
+                                    ) : (
+                                        <span onClick={() => setEditingField("attachment")}>
+                                            {formData.attachment ? formData.attachment.name : "Attach files"}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/*<div className="form-row2">*/}
+                            {/*    <h4>Associated Tickets</h4>*/}
+                            {/*    <EditableText*/}
+                            {/*        value={formData.fullDescription}*/}
+                            {/*        placeholder="Edit Description"*/}
+                            {/*        onSave={(val) => handleEditChange("fullDescription", val)}*/}
+
+
+                            {/*    />*/}
+                            {/*</div>*/}
+
+
                         </div>
+
+                     
+
+                        <CommentSection />
                     </div>
                 )}
             </main>
         </div>
     );
 }
+
 

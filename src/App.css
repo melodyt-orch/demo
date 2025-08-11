@@ -1,227 +1,10 @@
-/* .mainnav {
-    background-color: #1a166e;
-    padding: 10px 20px;
-}
-
-.navbar {
-    background-color: #cccccc;
-    padding: 10px 20px;
-}
-
-.menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-*/
-
-/*.menu-item {
-    margin-right: 20px;
-}*/
-
-/* .menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height:2rem;
-    border-radius: 50%;
-    background-color: #1a166e;
-    color: white;
-    cursor: pointer;
-    margin: 0.5rem; 
-    
-   
-}
-
-.link {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.form-container {
-    background-color: #e8e6e6;
-    margin-left: 50px;
-    margin-right: 50px; 
-    
-}
-
-.tickethead {
-    display: flex; 
-
-    background-color: #cccccc;
-    padding: 30px;
-}
-
-.tickethead span {
-    white-space: nowrap;
-    font-weight: bold;
-}
-
-.tickethead select {
-    margin-left: 0.5rem; 
-    padding: 0.5rem;
-    box-sizing: border-box;
-}
-
-.body {
-    display: flex;
-    flex: 1;
-    margin: 1rem;
-}
-.columns {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 0.5rem;
-    box-sizing: border-box;
-}
-
-    .columns label {
-        display: block;
-        width: 100%;
-        margin-bottom: 1rem;
-    }
-
-.columns input[type="text"],
-.columns select,
-.columns input[type="date"]{
-    width: 100%;
-    padding: 0.5rem;
-    box-sizing: border-box;
-     
-} */
-
-/*.columns.first {
-     width: 70%;
-}*/
-
-    /* Second column takes 20% */
-    
-/* .columns.second {
-     max-width: 30%;
-     margin-left:5rem;
-}
-.rows {
-    display: flex;
-    gap: 1.5rem; 
-}
-
-.row {
-    flex: 1; 
-    display: flex;
-    flex-direction: column;
-}
-
-.description-container {
-    display: flex;
-    width:100%; 
-    gap: 1rem;
-    margin: 1rem 0;
-    
-} */
-
-/*.description-label {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}*/
-
-
-/* textarea{
-    resize: vertical;
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 50%;
-    box-sizing: border-box;
- }
-
-.preview-panel {
-    flex: 1;
-    border: 1px solid #ccc;
-    padding: 0.75rem;
-    background-color: #f9f9f9;
-    width: 50%; 
-}
-
-.preview-box {
-    white-space: pre-wrap;
-    min-height: 150px;
-}
-
-.buttons {
-    display:flex; 
-    justify-content: right; 
-    padding: 0 1rem 1rem 0; 
-}
-
-button{
-    padding: 0.5rem;
-    margin: 0 0.5rem 0 0;
-}
-
-.submit-btn {
-    background-color: #1a166e;
-    color: white; 
-}
-
-.submitted-table {
-    margin-top: 2rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-}
-
-    .submitted-table table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .submitted-table td {
-        padding: 0.5rem;
-        border: 1px solid #ddd;
-    }
-
-
-    .submitted-table h2 {
-        margin-bottom: 1rem;
-        color: #333;
-    }
-
-    .submitted-table table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1rem;
-    }
-
-    .submitted-table th,
-    .submitted-table td {
-        border: 1px solid #ccc;
-        padding: 0.5rem;
-        text-align: left;
-    }
-
-    .submitted-table h4 {
-        margin-bottom: 0.5rem;
-    }
-
-.main-content {
-    //padding: 2rem;
-    font-family: Arial, sans-serif;
-}
-
-*/
-
-
 .mainnav {
     background-color: #1a166e;
     padding: 10px 20px;
 }
 
 .navbar {
-    background-color: #cccccc;
+    background-color: #e8e6e6;
     padding: 10px 20px;
 }
 
@@ -232,17 +15,16 @@ button{
     padding: 0;
 }
 
-.menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
+
+.menu-item button {
     background-color: #1a166e;
-    color: white;
+    color: white; 
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
-    margin: 0.5rem;
+    border-radius: 6px;
+   
 }
 
 .link {
@@ -259,6 +41,7 @@ button{
 
 .tickethead {
     display: flex;
+    white-space:nowrap; 
     background-color: #cccccc;
     padding: 30px;
 }
@@ -294,9 +77,11 @@ button{
     margin-bottom: 1rem;
 }
 
-.columns input[type="text"],
-.columns select,
-.columns input[type="date"] {
+
+
+input[type="text"],
+select,
+input[type="date"] {
     width: 100%;
     padding: 0.5rem;
     box-sizing: border-box;
@@ -310,11 +95,11 @@ button{
 
 .rows {
     display: flex;
-    gap: 1.5rem; /* space between columns */
+    gap: 1.5rem; 
 }
 
 .row {
-    flex: 1; /* equal width for each column */
+    flex: 1; 
     display: flex;
     flex-direction: column;
 }
@@ -358,28 +143,100 @@ button {
     margin: 0 0.5rem 0 0;
 }
 
-.submit-btn {
+.submitted-comment-container {
+    width: 100%;
+    display: flex;
+    flex:1; 
+    margin-top: 1rem;
+ 
+    
+    justify-content: space-around;
+}
+
+.submit-btn, .save-comment-btn {
     background-color: #1a166e;
     color: white;
 }
 
 .submitted-table {
-    margin-top: 2rem;
     padding: 1rem;
     border: 1px solid #ccc;
     font-family: Arial, sans-serif;
+    width: 60%; 
 }
 
 .submitted-table table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    
 }
 
-.submitted-table td {
+.submitted-table td{
     padding: 0.5rem;
     border: 1px solid #ddd;
     text-align: left;
+    width: 100%
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+}
+
+.field-group {
+    display: flex;
+    gap: 2rem;
+}
+
+.field {
+    flex-shrink: 0;
+}
+
+.assign-to {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    padding: 10px; 
+    gap: 12px;
+    border: 1px solid #ccc;
+}
+
+#headrow {
+    justify-content: space-between;
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid #ccc;
+}
+
+#toprow{
+    margin-bottom: 1rem; 
+}
+
+.fieldgroup .field{
+    padding: 1rem; 
+}
+
+/*.form-row2{}
+    display: block; 
+}
+*/
+.row-title {
+    text-transform: uppercase; 
+    font-size: 12px; 
+    flex: 0 0 20%;
+    max-width: 20%;
+    color: gray;
+}
+
+.row-value {
+    flex: 1;
 }
 
 .attachment-table {
@@ -388,6 +245,7 @@ button {
 
 .full-description-container {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem; 
 }
 
 .full-description-textarea {
@@ -410,6 +268,51 @@ button {
     font-family: Arial, sans-serif;
 }
 
+
+.comment-section {
+    background: #e8e6e6;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 40%;
+}
+
+.comment-textarea {
+    margin-top: 3rem; 
+    width: 100%; 
+    min-height: 150px; 
+}
+
+
+.saved-comment {
+    padding: 0.5rem; 
+}
+
+.comment-buttons {
+    display: flex; 
+    justify-content: flex-end;
+    margin-top: 1rem;
+    
+}
+
+.ticketid {
+    color: gray;
+}
+
+h3{
+    font-size: 16px; 
+    font-weight:normal; 
+}
+h4{
+    font-size: 14px; 
+    font-weight: normal; 
+}
+
 .main-content {
     font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
 }
+
+
