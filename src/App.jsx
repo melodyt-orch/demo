@@ -14,7 +14,9 @@ import {
 import CommentSection from './commentsection.jsx';
 
 
-function LabeledSelect({ label, name, options, defaultValue }) {
+//function to generate dropdown menu from array of objects 
+const LabeledSelect = ({ label, name, options, defaultValue }) => {
+    //initially selected value is default value to display, if nothing provided then use first value, if nothing, then keep empty 
     const selectedValue = defaultValue || options?.[0]?.value || '';
     return (
         <label>
@@ -30,10 +32,14 @@ function LabeledSelect({ label, name, options, defaultValue }) {
     );
 }
 
+//function to allow for inline editing of select 
 const EditableSelect = ({ fieldName, options, value, editingField, onChange, setEditingField }) => {
+    //if field if currently being edited 
     return editingField === fieldName ? (
+        //renders dropdown menu
         <select
             value={value}
+            //When something else is selected, sends value back to parent 
             onChange={(e) => onChange(fieldName, e.target.value)}
             autoFocus
         >
@@ -44,28 +50,39 @@ const EditableSelect = ({ fieldName, options, value, editingField, onChange, set
             ))}
         </select>
     ) : (
+        // If this field is NOT being edited, show the label as plain text
+        //on cilck, editingField is set to fieldName, rerender 
         <span onClick={() => setEditingField(fieldName)}>
             {options.find((opt) => opt.value === value)?.label || "N/A"}
         </span>
     );
 };
 
-function EditableText({ value, onSave, placeholder }) {
+//function to allow for inline editing of text values 
+const EditableText = ({ value, onSave, placeholder }) => {
+    //bool to keep track of editing state
     const [editing, setEditing] = useState(false);
+    //intermediate value to that users can continuously make changes
     const [draft, setDraft] = useState(value);
+    //reference to input element 
     const inputRef = useRef(null);
 
-    useEffect(() => {
+    //autofocus and selects all text 
+    //runs when editing bool changes
+     useEffect(() => {
         if (editing && inputRef.current) {
             inputRef.current.focus();
             inputRef.current.select();
         }
     }, [editing]);
 
+    //update draft value every time there are changes to value 
+    //runs when value changes 
     useEffect(() => {
-        setDraft(value);  // Update draft if parent value changes externally
+        setDraft(value);  
     }, [value]);
 
+    //calls onSave (in parent component) to save value if draft is different than original, then exit editing state 
     const handleSave = () => {
         if (draft !== value) {
             onSave(draft);
@@ -73,11 +90,13 @@ function EditableText({ value, onSave, placeholder }) {
         setEditing(false);
     };
 
+    //sets draft value back to original, then exits editing state 
     const handleCancel = () => {
         setDraft(value);
         setEditing(false);
     };
 
+    //keyboard event handler
     const onKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -88,24 +107,29 @@ function EditableText({ value, onSave, placeholder }) {
         }
     };
 
+    //if in editing state
     if (editing) {
         return (
             <input
-                ref={inputRef}
+                ref={inputRef}   
                 type="text"
                 value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                onBlur={handleSave}
-                onKeyDown={onKeyDown}
+                onChange={(e) => setDraft(e.target.value)}      //update draft on input change
+                onBlur={handleSave}                             //saves changes when input loses focus (click away)
+                onKeyDown={onKeyDown}   
                 placeholder={placeholder}
             />
         );
     }
 
+    // If not editing, render a span displaying the current value (or placeholder if empty)
+    // Clicking the span switches to editing mode
     return <span onClick={() => setEditing(true)} >{value || placeholder}</span>;
 }
 
 export default function App() {
+
+    //declared variables and setter functions 
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState(null);
     const [selectedProject, setSelectedProject] = useState('selectProject');
@@ -113,14 +137,17 @@ export default function App() {
     const [description, setDescription] = useState('');
     const [editingField, setEditingField] = useState(null);
 
+    //function to handle form changes for specific project 
     const handleProjectChange = (e) => {
         setSelectedProject(e.target.value);
     };
 
+    //function to handle UI for specific menu button 
     const handleMenuClick = (screen) => {
         setActiveScreen(screen);
     };
 
+    //function to handle cancel button on ticket screen 
     const handleCancel = () => {
         setSelectedProject('selectProject');
         setDescription('');
@@ -130,6 +157,7 @@ export default function App() {
         setEditingField(null);
     };
 
+    /// Handles form submission: gathers all form field values into an object and stores it in state
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const data = {
@@ -157,6 +185,8 @@ export default function App() {
      
     };
 
+    //handles changes made to form after it is submitted, called from onSave 
+    //Uses previous state, spreads it into a new object, then dynamically updates the specific field with new value 
     const handleEditChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
         setEditingField(null);
