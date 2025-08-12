@@ -230,7 +230,7 @@ export default function App() {
                                                 onChange={(e) => setDescription(e.target.value)}
                                             />
                                             <div className="preview-panel">
-                                                <div className="preview-box">
+                                                <div className={`preview-box ${!description ? 'empty' : ''}`}>
                                                     {description || 'Preview'}
                                                 </div>
                                             </div>
