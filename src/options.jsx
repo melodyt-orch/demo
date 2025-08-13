@@ -5,6 +5,14 @@ export const projectOptions = [
     { value: 'Orchestra', label: 'Orchestra' },
 ];
 
+export const assiciationOptions = [
+    { value: 'null', label: '<none>' },
+    { value: 'Parent', label: 'Parent' },
+    { value: 'Child', label: 'Child' },
+    { value: 'Duplicate', label: 'Duplicate' },
+    { value: 'Related', label: 'Related' },
+];
+
 export const priorityOptions = [
     { value: 'highest', label: 'Highest' },
     { value: 'high', label: 'High' },

@@ -10,6 +10,7 @@ import {
     versionOptions,
     patchOptions,
     categoryOptions,
+    assiciationOptions,
 } from './options.jsx';
 import CommentSection from './commentsection.jsx';
 
@@ -33,15 +34,36 @@ const LabeledSelect = ({ label, name, options, defaultValue }) => {
 }
 
 //function to allow for inline editing of select 
-const EditableSelect = ({ fieldName, options, value, editingField, onChange, setEditingField }) => {
-    //if field if currently being edited 
-    return editingField === fieldName ? (
-        //renders dropdown menu
-        <select
+//const EditableSelect = ({ fieldName, options, value, editingField, onChange, setEditingField }) => {
+//    //if field if currently being edited 
+//    return editingField === fieldName ? (
+//        //renders dropdown menu
+//        <select
+//            value={value}
+//            //When something else is selected, sends value back to parent 
+//            onChange={(e) => onChange(fieldName, e.target.value)}
+//            autoFocus
+//        >
+//            {options.map((opt) => (
+//                <option key={opt.value} value={opt.value}>
+//                    {opt.label}
+//                </option>
+//            ))}
+//        </select>
+//    ) : (
+//        // If this field is NOT being edited, show the label as plain text
+//        //on cilck, editingField is set to fieldName, rerender 
+//        <span onClick={() => setEditingField(fieldName)}>
+//            {options.find((opt) => opt.value === value)?.label || "N/A"}
+//        </span>
+//    );
+//};
+
+const EditableSelect = ({ fieldName, options, value, onChange }) => {
+    return (
+        <select className="editable"
             value={value}
-            //When something else is selected, sends value back to parent 
             onChange={(e) => onChange(fieldName, e.target.value)}
-            autoFocus
         >
             {options.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -49,12 +71,6 @@ const EditableSelect = ({ fieldName, options, value, editingField, onChange, set
                 </option>
             ))}
         </select>
-    ) : (
-        // If this field is NOT being edited, show the label as plain text
-        //on cilck, editingField is set to fieldName, rerender 
-        <span onClick={() => setEditingField(fieldName)}>
-            {options.find((opt) => opt.value === value)?.label || "N/A"}
-        </span>
     );
 };
 
@@ -238,11 +254,7 @@ export default function App() {
                                 <div className="columns first">
                                     {selectedProject === 'Orchestrade' && (
                                         <label>
-                                            <div>Association to current ticket</div>
-                                            <select name="Associations">
-                                                <option value="none">none</option>
-                                                <option value="Parent">Parent</option>
-                                            </select>
+                                            <LabeledSelect label="Association to current ticket" name="Association" options={assiciationOptions} />
                                         </label>
                                     )}
 
@@ -459,10 +471,11 @@ export default function App() {
 
                                 <div className="form-row">
                                     <div className="row-title">Release Notes</div>
-                                    <div className="row-value">
+                                    <div className="row-value" id="releasenotes">
 
                                         <EditableText
                                             value={formData.releasenotes}
+                                            placeholder="No notes"
                                             onSave={(val) => handleEditChange("releasenotes", val)}
                                            
                                         />
@@ -472,7 +485,7 @@ export default function App() {
 
                             <div className="form-row">
                                 <div className="row-title">Category</div>
-                                <div className="row-value">
+                                <div className="row-value" >
                                     <EditableSelect
                                         fieldName="category"
                                         options={categoryOptions}

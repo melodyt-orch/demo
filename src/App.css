@@ -51,7 +51,6 @@
 .tickethead span {
     white-space: nowrap;
     font-size: 16px; 
-/*    font-weight: bold;*/
 }
 
 .tickethead select {
@@ -141,7 +140,6 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-/*    text-align:center; */
     color: #cccccc;
     font-size: 18px; 
 }
@@ -197,10 +195,12 @@ button {
     align-items: center;
     gap: 5rem;
     width: 100%;
+ 
 }
 
 .field-group {
     display: flex;
+    align-items: center; 
     gap: 2rem;
 }
 
@@ -213,7 +213,12 @@ button {
     flex-shrink: 0;
 }
 
-
+.editable {
+    border: none;
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+}
 
 .form-section {
     display: flex;
@@ -237,10 +242,6 @@ button {
     padding: 1rem; 
 }
 
-/*.form-row2{}
-    display: block; 
-}
-*/
 .row-title {
     text-transform: uppercase; 
     font-size: 12px; 
@@ -253,8 +254,16 @@ button {
     flex: 1;
 }
 
+#releasenotes{
+    display:flex; 
+    align-items: center; 
+    margin-left:7px; 
+    height: 1.8rem; 
+}
+
 .attachment-table {
     margin-top: 1rem;
+    
 }
 
 .full-description-container {
